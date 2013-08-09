@@ -1,0 +1,245 @@
+<!DOCTYPE HTML>
+<!--
+	Telephasic 1.0 by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Mutual Aid Relief</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,600" rel="stylesheet" type="text/css" />
+		<!--[if lte IE 8]><script src="js/html5shiv.js"><![endif]-->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.dropotron.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-panels.min.js"></script>
+		<script src="js/init.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="css/skel-noscript.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-n1.css" />
+		</noscript>
+				<script>
+		function isValidEmailAddress(emailAddress) {
+		  var pattern = new RegExp(/^[+a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i);
+		  // alert( pattern.test(emailAddress) );
+		  return pattern.test(emailAddress);
+		};
+		function checkAndSubmit() {
+// 		  var submit_boolean = true;
+// 		  var values = $('#email').val();
+// 	          if (!isValidEmailAddress(values)) {
+// 		     $('#email_error').text("Not a valid email");
+// 		     submit_boolean = false;
+// 		  } 
+// 		   
+// 		  var password = $('#password').val();
+// 		  var confirm_password = $('#confirm_password').val();
+// 		  if (password != confirm_password) {
+// 		    $('#passwords_match_error').text("Passwords don't match");
+// 		    submit_boolean = false;
+// 		  }
+// 		  
+// 		  if (submit_boolean == true) {
+		    document.forms[0].submit();return false;
+// 		  }
+
+		
+		
+		}
+		</script>
+	</head>
+	<body class="left-sidebar">
+
+		<!-- Header Wrapper -->
+			<div id="header-wrapper">
+						
+				<!-- Header -->
+					<div id="header" class="container">
+						
+						<!-- Logo -->
+							<h1 id="logo"><a href="/">Mutual Aide Relief</a></h1>
+						
+						<!-- Nav -->
+							<nav id="nav">
+								<ul>
+								    <li><a href="/inventory">Inventory</a></li>
+								    <li><a href="/cases">Cases</a></li>
+								    <li class="break">
+								    <li><a href="/help">Help</a></li>
+								    <%if (signed_in) { %>
+								      <li><a href="/signout">Signout</a></li>
+								    <% } else { %>
+								      <li><a href="/signin">Signin</a></li>
+								    <% } %>
+								</ul>
+							</nav>
+
+					</div>
+
+			</div>
+
+		<!-- Main Wrapper -->
+			<div class="wrapper">
+
+				<div class="container">
+					<div class="row" id="main">
+						<div class="4u">
+
+							<!-- Sidebar -->
+								<section id="sidebar">
+									<section>
+										<header>
+											<h3>Admin</h3>
+										</header>
+										<ul>
+										<li><a href="/add-warehouse">Add A Warehouse</a></li>
+										<li><a href="/add-vehicle">Add A Delivery Vehicle</a></li>
+										</ul>
+										
+									</section>
+									
+								</section>
+					
+						</div>
+						<div class="8u skel-cell-mainContent">
+					
+							<!-- Content -->
+								<article id="content">
+									<header>
+										<h2>Add a vehilce</h2>
+										<span>All of the fields on this form are required.</span>
+									</header>
+									<% if (typeof messages != 'undefined') { %>
+									<p class="messages"><%= messages %></p>
+									<% } %>
+									<form method="post" action="/admin-add-vehicle">
+										<span id="email_error"></span>
+										<br>
+										<span id="passwords_match_error"></span>
+										<div class="row">
+										<div class="12u">
+										  <select id="incident" name="incident">
+										  <option value="none">Click to choose an incident</option>
+									
+										    <% incidents.forEach( function( incident ){ %>
+										    <option value="<%= incident._id %>"><%= incident.name %></option>
+										    <% }); %>
+										  </select>
+										</div>
+										</div>
+										<div class="row">
+											<div class="12u">
+												<input id="owner_name" name="owner_name" placeholder="Owner's Name" type="text" class="text" />
+											</div>
+										</div>
+										<div class="row">
+											<div class="12u">
+												<input id="other_drivers" name="other_drivers" placeholder="Other drivers. Separate each name with a comma" type="text" class="text" />
+											</div>
+										</div>
+										<div class="row">
+											<div class="12u">
+												<input id="phone1" name="phone1" placeholder="Primary Phone Number" type="text" class="text" />
+											</div>
+										</div>
+										<!--<div class="row">
+											<div class="12u">
+												<input id="phone2" name="phone2" placeholder="Secondary Phone Number" type="text" class="text" />
+											</div>
+										</div>-->
+										<div class="row">
+											<div class="12u">
+												<input id="owner_email" name="owner_email" placeholder="Vehicle Owner's Email" type="text" class="text" />
+											</div>
+										</div>
+										<div class="row">
+											<div class="12u">
+												<input id="owner_twitter" name="owner_twitter" placeholder="Vehicle Owner's Twitter (if exists)" type="text" class="text" />
+											</div>
+										</div>
+									
+										<div class="row">
+											<div class="12u">
+											  <select id="vehicle_type" name="vehicle_type">
+											  <option value="none">Click to choose vehicle type</option>
+											  <option value="small_car">Small Car</option>
+											  <option value="medium_car">Medium Car</option>
+											  <option value="large_car">Large Car</option>
+											  <option value="van">Van</option>
+											  <option value="pickup_truck">Pickup Truck</option>
+											  <option value="trailer">Trailer</option>
+										
+											  </select>
+											</div>
+										</div>
+										<div class="row">
+											<div class="12u">
+												<input id="license_plate" name="license_plate" placeholder="Vehicle License Plate" type="text" class="text" />
+											</div>
+										</div>
+								<!--		<div class="row">
+											<div class="12u">
+												<input id="vehicle_color" name="vehicle_color" placeholder="Vehicle Color" type="text" class="text" />
+											</div>
+										</div>
+										<div class="row">
+											<div class="12u">
+												<input id="vehicle_make" name="vehicle_make" placeholder="Vehicle Make (Optional)" type="text" class="text" />
+											</div>
+										</div>
+										<div class="row">
+											<div class="12u">
+												<input id="vehicle_model" name="vehicle_model" placeholder="Vehicle Model (Optional)" type="text" class="text" />
+											</div>
+										</div>
+									-->
+										<div class="row">
+											<div class="12u">
+												<input id="emergency_contact_name" name="emergency_contact_name" placeholder="Emergency Contact Name" type="text" class="text" />
+											</div>
+										</div>
+										<div class="row">
+											<div class="12u">
+												<input id="emergency_contact_number" name="emergency_contact_number" placeholder="Emergency Contact Number" type="text" class="text" />
+											</div>
+										</div>
+										
+										
+										<div class="row">
+											<div class="12u">
+												<a href="#" onclick="checkAndSubmit()" class="button button-icon icon icon-envelope">Submit</a>
+											</div>
+										</div>
+									</form>
+								</article>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+		<!-- Footer Wrapper -->
+			<div id="footer-wrapper">
+
+				<!-- Footer -->
+					<div id="footer" class="container">
+						
+					</div>
+
+				<!-- Copyright -->
+					<div id="copyright" class="container">
+						<ul class="menu">
+							<li>&copy; Untitled. All rights reserved.</li>
+							<li>Demo images: <a href="http://ineedchemicalx.deviantart.com/">Felicia Simion</a></li>
+							<li>Design: <a href="http://html5up.net/">HTML5 UP</a></li>
+						</ul>
+					</div>
+
+			</div>
+
+	</body>
+</html>

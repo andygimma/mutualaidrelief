@@ -1,0 +1,223 @@
+<!DOCTYPE HTML>
+<!--
+	Telephasic 1.0 by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Mutual Aid Relief</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,600" rel="stylesheet" type="text/css" />
+		<!--[if lte IE 8]><script src="js/html5shiv.js"><![endif]-->
+		<script src="/js/jquery.min.js"></script>
+		<script src="/js/jquery.dropotron.js"></script>
+		<script src="/js/skel.min.js"></script>
+		<script src="/js/skel-panels.min.js"></script>
+		<script src="/js/init.js"></script>
+		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
+		<script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
+
+		<noscript>
+			<link rel="stylesheet" href="/css/skel-noscript.css" />
+			<link rel="stylesheet" href="/css/style.css" />
+			<link rel="stylesheet" href="/css/style-n1.css" />
+		</noscript>
+		  <script>
+		  function checkAndSubmit() {
+		    document.forms[0].submit();return false;
+		}
+		</script>
+		
+		<script>
+		$(function() {
+
+		  $( "#warehouse" ).change(function() {
+		  var selected = $( this ).val();
+		  if (selected == "none") {
+		    window.location.href = "/admin_view_inventory/";
+		  } else {
+		    window.location.href = "/admin_view_inventory/" + selected;
+		  }
+		  });
+		
+		});
+		</script>
+		
+		<script>
+		function searchName() {
+		  var name = $( "#name" ).val();
+		  window.location.href = "/view_inventory_name/" + name;
+		  
+
+		}
+		</script>
+		
+		<script>
+		function getJSON() {
+		  var incident = $( "#warehouse" ).val();
+		  if (incident == "none") {
+		      window.location.href = "/admin-inventory-download/json";
+		    } else {
+		      window.location.href = "/admin-inventory-download/" + incident + "/json";
+		    }
+		}
+		
+		function getCSV() {
+		  var incident = $( "#warehouse" ).val();
+		  if (incident == "none") {
+		      window.location.href = "/admin-inventory-download/csv";
+		    } else {
+		      window.location.href = "/admin-inventory-download/" + incident + "/csv";
+		    }
+		}
+		
+		</script>
+
+	</head>
+	<body class="left-sidebar">
+
+		<!-- Header Wrapper -->
+			<div id="header-wrapper">
+						
+				<!-- Header -->
+					<div id="header" class="container">
+						
+						<!-- Logo -->
+							<h1 id="logo"><a href="/">Mutual Aide Relief</a></h1>
+						
+						<!-- Nav -->
+							<nav id="nav">
+							<ul>
+								    <li><a href="/inventory">Inventory</a></li>
+								    <li><a href="/cases">Cases</a></li>
+								    <li class="break">
+								    <li><a href="/help">Help</a></li>
+								    <%if (signed_in) { %>
+								      <li><a href="/signout">Signout</a></li>
+								    <% } else { %>
+								      <li><a href="/signin">Signin</a></li>
+								    <% } %>
+								</ul>
+							</nav>
+
+					</div>
+
+			</div>
+
+		<!-- Main Wrapper -->
+			<div class="wrapper">
+
+				<div class="container">
+					<div class="row" id="main">
+						<div class="4u">
+
+							<!-- Sidebar -->
+								<section id="sidebar">
+									<section>
+									<header>Admin</header>
+									<ul>
+																											<li><a href="/admin-users">Users</a></li>
+										<li><a href="/admin-incidents">Incidents</a></li>
+										<li><a href="/admin-cases">Cases</a></li>
+										<li><a href="/admin-warehouses">Warehouses</a></li>
+										<li><a href="/admin-inventory">Inventory</a></li>
+										<li><a href="/admin-orders">Orders</a></li>
+										<li><a href="/admin-vehicles">Vehicles</a></li>
+
+										</ul>
+
+									</section>
+								
+								</section>
+					
+						</div>
+						<div class="8u skel-cell-mainContent">
+					
+							<!-- Content -->
+								<article id="content">
+									<header>
+										<h2>Add Inventory</h2>
+<!-- 										<span>Your homepage</span> -->
+									</header>
+									<% if (typeof messages != 'undefined') { %>
+									<p class="messages"><%= messages %></p>
+									<% } %>
+								      <form>
+									<div class="row">
+											<div class="12u">
+										<select id="warehouse" name="warehouse">
+											  <option value="none">Showing Inventory In All Warehouses - Click To Change</option>
+											  <% warehouses.forEach( function( warehouse ){ %>
+										    <option value="<%= warehouse._id %>"><%= warehouse.name %></option>
+										    <% }); %>
+										  </select>
+										  </div>
+										  </div>
+									</form>
+									
+										  
+									<br>
+																										<div class="row">
+									<div class="9u">
+									  <form>
+									  <input id="name" name="name" placeholder="Search By Name" type="text" class="text" />
+								  
+						    
+									</div>
+									
+									<div class="2u">
+									  <a href="#" onclick="searchName()" class="button button-icon icon icon-envelope">Search</a>
+									</div>
+									  </form>						
+									  </div>
+									  <br>
+									   <div class="row">
+										  <div class="3u">
+										  <a onclick="getCSV()" class="button button-icon icon">Download CSV</a>
+										  </div>
+										  
+										  <div class="3u">
+										  <a onclick="getJSON()" class="button button-icon icon">Download JSON</a>
+										  </div>
+										  </div>
+										  <br>
+									<% inventory.forEach( function( inventory_item ){ %>
+						
+									   <p> <%= inventory_item.name %> | <%= inventory_item.total_units%> | <%= inventory_item.warehouse_name %></p>
+								
+									 <% }); %>
+								
+								</article>
+
+								</article>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+		<!-- Footer Wrapper -->
+			<div id="footer-wrapper">
+
+				<!-- Footer -->
+					<div id="footer" class="container">
+						
+					</div>
+
+				<!-- Copyright -->
+					<div id="copyright" class="container">
+						<ul class="menu">
+							<li>&copy; Untitled. All rights reserved.</li>
+							<li>Demo images: <a href="http://ineedchemicalx.deviantart.com/">Felicia Simion</a></li>
+							<li>Design: <a href="http://html5up.net/">HTML5 UP</a></li>
+						</ul>
+					</div>
+
+			</div>
+
+	</body>
+
+</html>

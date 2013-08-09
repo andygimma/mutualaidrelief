@@ -1,0 +1,261 @@
+<!DOCTYPE HTML>
+<!--
+	Telephasic 1.0 by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Mutual Aid Relief</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,600" rel="stylesheet" type="text/css" />
+		<!--[if lte IE 8]><script src="js/html5shiv.js"><![endif]-->
+		<script src="/js/jquery.min.js"></script>
+		<script src="/js/jquery.dropotron.js"></script>
+		<script src="/js/skel.min.js"></script>
+		<script src="/js/skel-panels.min.js"></script>
+		<script src="/js/init.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="/css/skel-noscript.css" />
+			<link rel="stylesheet" href="/css/style.css" />
+			<link rel="stylesheet" href="/css/style-n1.css" />
+		</noscript>
+		<script>
+		function checkAndSubmit() {
+		    document.forms[0].submit();return false;
+		    }
+		</script>
+		
+		<script>
+		$(function() {
+
+		  $( "#role" ).change(function() {
+		  var selected = $( this ).val();
+		    if (selected=="admin") {
+		      $("#checkbox_permissions").hide();
+		      alert("Admins are automatically give full permission to do anything within your Incident.\n\nBe selective with this responsibility.");
+		    } else {
+		      $("#checkbox_permissions").show();
+		    }
+		  });
+		
+		});
+		</script>
+	</head>
+	<body class="left-sidebar">
+
+		<!-- Header Wrapper -->
+			<div id="header-wrapper">
+						
+				<!-- Header -->
+					<div id="header" class="container">
+						
+						<!-- Logo -->
+							<h1 id="logo"><a href="/">Mutual Aide Relief</a></h1>
+						
+						<!-- Nav -->
+							<nav id="nav">
+								<ul>
+								    <li><a href="/inventory">Inventory</a></li>
+								    <li><a href="/cases">Cases</a></li>
+								    <li class="break">
+								    <li><a href="/help">Help</a></li>
+								    <%if (signed_in) { %>
+								      <li><a href="/signout">Signout</a></li>
+								    <% } else { %>
+								      <li><a href="/signin">Signin</a></li>
+								    <% } %>
+								</ul>
+							</nav>
+
+					</div>
+
+			</div>
+
+		<!-- Main Wrapper -->
+			<div class="wrapper">
+
+				<div class="container">
+					<div class="row" id="main">
+						<div class="4u">
+
+							<!-- Sidebar -->
+								<section id="sidebar">
+									<section>
+										<header>
+											<h3>Admin</h3>
+										
+
+
+										</header>
+										<ul>
+																											<li><a href="/admin-users">Users</a></li>
+										<li><a href="/admin-incidents">Incidents</a></li>
+										<li><a href="/admin-cases">Cases</a></li>
+										<li><a href="/admin-warehouses">Warehouses</a></li>
+										<li><a href="/admin-inventory">Inventory</a></li>
+										<li><a href="/admin-orders">Orders</a></li>
+										<li><a href="/admin-vehicles">Vehicles</a></li>
+
+										</ul>
+									
+									</section>
+								
+								</section>
+					
+						</div>
+						<div class="8u skel-cell-mainContent">
+					
+							<!-- Content -->
+								<article id="content">
+								
+									<header>
+										<h2>Edit: <%= user.email %></h2>
+										<% if (typeof messages != 'undefined') { %>
+										<p class="messages"><%= messages %></p>
+										<% } %>
+										<br>
+										<div class="row">
+											<div class="3u">
+												<h3>Incident</h3>
+											</div>
+											<div class="9u">
+												<h3><%= user.incident_name %></h3>
+											</div>
+										</div>
+										<br>
+									<form method="post" action="/update-user">
+									
+										<div class="row">
+											<div class="3u">
+												<h3>Authorized</h3>
+											</div>
+											<div class="9u">
+												<select name="authorized" id="authorized">
+												<% if (user.authorized) { %>
+												<option value="true" selected="selected">True</option>
+												<option value="false">False</option>
+												<% } else {%>
+												<option value="true">True</option>
+												<option value="false" selected="selected">False</option>
+												<% } %>
+												</select>
+											</div>
+										</div>
+										<div class="row">
+										<div class="3u">
+											<h3>Role</h3>
+										</div>
+										<div class="9u">
+											<select name="role" id="role">
+											<% if (user.role == "user") { %>
+											<option value="user" selected="selected">User</option>
+											<option value="admin">Admin</option>
+											<% } else {%>
+											<option value="user">User</option>
+											<option value="admin" selected="selected">Admin</option>
+											<% } %>
+											</select>
+										</div>
+										</div>
+										<div class="row">
+											<div class="3u">
+												<h3>Permissions</h3>
+												<p>* If you set role to "Admin" then all of the boxes are automatically saved as true. Admins have full access.</p>
+											</div>
+											<div class="9u" id="checkbox_permissions">
+												<p>Inventory</p>
+												<% if (user.create_inventory) { %>
+												  <input type="checkbox" name="create_inventory" value="true" checked>Create Inventory<br>
+												<% } else { %>
+												  <input type="checkbox" name="create_inventory" 	value="true">Create Inventory<br>
+												<% } %>
+												<% if (user.view_inventory) { %>
+												  <input type="checkbox" name="view_inventory" value="true" checked>View Inventory<br>
+												<% } else { %>
+												  <input type="checkbox" name="view_inventory" value="true">View Inventory<br>
+												<% } %>
+												<% if (user.update_or_delete_inventory) { %>
+												  <input type="checkbox" name="update_or_delete_inventory" value="true" checked>Update Or Delete Inventory<br>
+												<% } else { %>
+												  <input type="checkbox" name="update_or_delete_inventory" value="true">Update Or Delete Inventory<br>
+												<% } %>
+												<br>
+												<p>Orders</p>
+												<% if (user.create_orders) { %>
+												  <input type="checkbox" name="create_orders" value="true" checked>Create Orders<br>
+												<% } else { %>
+												  <input type="checkbox" name="create_orders" value="true">Create Orders<br>
+												<% } %>
+												<% if (user.view_orders) { %>
+												  <input type="checkbox" name="view_orders" value="true" checked>View Orders<br>
+												<% } else { %>
+												  <input type="checkbox" name="view_orders" value="true">View Orders<br>
+												<% } %>
+												<% if (user.update_or_delete_orders) { %>
+												  <input type="checkbox" name="update_or_delete_orders" value="true" checked>Update Or Delete Orders<br>
+												<% } else { %>
+												  <input type="checkbox" name="update_or_delete_orders" value="true">Update Or Delete Orders<br>
+												<% } %>
+												<br>
+												<p>Cases</p>
+												<% if (user.create_cases) { %>
+												  <input type="checkbox" name="create_cases"
+												  value="true" checked>Create Cases<br>
+												<% } else { %>
+												  <input type="checkbox" name="create_cases"
+												  value="true">Create Cases<br>
+												<% } %>
+												<% if (user.view_cases) { %>
+												  <input type="checkbox" name="view_cases" value="true" checked>View Cases<br>
+												<% } else { %>
+												  <input type="checkbox" name="view_cases" value="true">View Cases<br>
+												<% } %>
+												<% if (user.update_or_delete_cases) { %>
+												  <input type="checkbox" name="update_or_delete_cases" value="true" checked>Update Or Delete Cases<br>
+												<% } else { %>
+												  <input type="checkbox" name="update_or_delete_cases" value="true">Update Or Delete Cases<br>
+												<% } %>
+											</div>
+										</div>
+										<input type="hidden" name="user_id" value="<%= user._id %>">
+
+										<div class="row">
+											<div class="12u">
+												<a href="#" onclick="checkAndSubmit()" class="button button-icon icon icon-envelope">Update</a>
+											</div>
+										</div>
+									</form>
+									</header>
+								
+								</article>
+
+						</div>
+					</div>
+					
+				</div>
+			</div>
+
+		<!-- Footer Wrapper -->
+			<div id="footer-wrapper">
+
+				<!-- Footer -->
+					<div id="footer" class="container">
+						
+					</div>
+
+				<!-- Copyright -->
+					<div id="copyright" class="container">
+						<ul class="menu">
+							<li>&copy; Untitled. All rights reserved.</li>
+							<li>Demo images: <a href="http://ineedchemicalx.deviantart.com/">Felicia Simion</a></li>
+							<li>Design: <a href="http://html5up.net/">HTML5 UP</a></li>
+						</ul>
+					</div>
+
+			</div>
+
+	</body>
+</html>

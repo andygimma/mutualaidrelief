@@ -1,0 +1,170 @@
+<!DOCTYPE HTML>
+<!--
+	Telephasic 1.0 by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Mutual Aid Relief</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,600" rel="stylesheet" type="text/css" />
+		<!--[if lte IE 8]><script src="js/html5shiv.js"><![endif]-->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.dropotron.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-panels.min.js"></script>
+		<script src="js/init.js"></script>
+		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
+		<script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
+
+		<noscript>
+			<link rel="stylesheet" href="css/skel-noscript.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-n1.css" />
+		</noscript>
+
+	</head>
+	<body class="left-sidebar">
+
+		<!-- Header Wrapper -->
+			<div id="header-wrapper">
+						
+				<!-- Header -->
+					<div id="header" class="container">
+						
+						<!-- Logo -->
+							<h1 id="logo"><a href="/">Mutual Aide Relief</a></h1>
+						
+						<!-- Nav -->
+							<nav id="nav">
+							<ul>
+								    <li><a href="/inventory">Inventory</a></li>
+								    <li><a href="/cases">Cases</a></li>
+								    <li class="break">
+								    <li><a href="/help">Help</a></li>
+								    <%if (signed_in) { %>
+								      <li><a href="/signout">Signout</a></li>
+								    <% } else { %>
+								      <li><a href="/signin">Signin</a></li>
+								    <% } %>
+								</ul>
+							</nav>
+
+					</div>
+
+			</div>
+
+		<!-- Main Wrapper -->
+			<div class="wrapper">
+
+				<div class="container">
+					<div class="row" id="main">
+						<div class="4u">
+
+							<!-- Sidebar -->
+								<section id="sidebar">
+									<section>
+										<header>
+											<h3>Inventory</h3>
+										</header>
+										<ul>
+										<li><a href="/warehouses">See Warehouses</a></li>
+										<li><a href="/add-inventory">Add Inventory</a></li>
+										<li><a href="/search-inventory">Search Inventory</a></li>
+										<li><a href="/list-inventory">See Current Inventory</a></li>
+										</ul>
+										<hr>
+										<header>
+											<h3>Deliveries</h3>
+										</header>
+										<ul>
+										<li><a href="/create-delivery-order">Create Delivery Order</a></li>
+										<li><a href="/add-orders-to-vehicle">Add Orders to a Vehicle</a></li>
+										<li><a href="/mark-delivery-complete">Mark Delivery as complete</a></li>
+										<li><a href="/cancel-delivery">Cancel Delivery</a></li>
+										<li><a href="/see-all-current-deliveries">See All Current Deliveries</a></li>
+										</ul>
+										
+
+									</section>
+								
+								</section>
+					
+						</div>
+						<div class="8u skel-cell-mainContent">
+					
+							<!-- Content -->
+								<article id="content">
+									<header>
+										<h2>Help</h2>
+										<span>A Quick How To Guide</span>
+									</header>
+									<% if (typeof messages != 'undefined') { %>
+									<p class="messages"><%= messages %></p>
+									<% } %>
+								      <h3>Navigation Panel</h3>
+								      <p>In the navigation panel, there are 4 options. Inventory, Cases, Help and Signin. Cases is just a page stub, but the other three work. Most of the interesting stuff is in inventory, so we'll start there.</p>
+								      <h3>Inventory</h3>
+								      <p>In inventory, there are several option on the left sidebar. We'll discuss them each.</p>
+								      <p>When you click <a href="/inventory">Inventory</a> on the navigation panel, the first thing you will see is a map, populated with a couple of fake warehouses. You can click on the warehouses, and you will be taken to a warehouse page. When you add inventory, you can see the inventory for each warehouse on that page. This will eventually be changed, because you don't want to load all inventory on each page load, but I left it for now as an illustration.</p>
+								      <p>Next we'll go over the options.</p>
+								      <p><strong>See Warehouses</strong></p>
+								      <p>This gives you a list, rather than a map, of your warehouses/</p>
+								      <p><strong>Add Inventory</strong></p>
+								      <p>This doesn't yet have the proper form, but each form works. Here, container takes the place of 'pack' in Sahana.Eventually, we will normalize it, to make sure we get accurate data.</p>
+																									      <p><strong>Search Inventory</strong></p>
+								      <p>Not yet working</p>
+								      
+								      <p><strong>See Current Inventory</strong></p>
+								      <p>Shows all inventory, regardless of warehouse. With our style of relief effort, where inventory is held, is less important than the fact that it is held, somewhere. We use a horizontal structure, and I feel this app accurately represents that.</p>
+								      
+								      <h3>Deliveries</h3>
+								      <p><strong>Create Delivery Order</strong></p>
+								      <p>Create an order, choose a warehouse, spell an item, container and container volume choices will be added via ajax for the user. Then you just have to pick the number of units being sent. 
+								      Example: Water, box, volume=16 (16 in a box), units = 20 (ship 20 units)</p>
+								      
+								      <p><strong>Add orders to vehicle</strong></p>
+								      <p>Since a vehicle can go to more than one place, with this app, you can add several orders to a vehicle, using a checkbox. Once an order is added to a vehicle, the items are removed from Inventory.</p>
+								      
+								      <p><strong>Mark delivery as complete</strong></p>
+								      <p>Changes a delivery's designation status from "being delivered", to "complete".</p>
+								      
+								      <p><strong>Cancel Delivery</strong></p>
+								      <p>A snapshot of what's being delivered. This is incomplete, and for the moment only shows _id numbers.</p>
+								      
+								      <p><strong>See all current deliveries</strong></p>
+								      <p>Cancels a delivery and restocks inventory to original warehouse.</p>
+									
+									
+								</article>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+		<!-- Footer Wrapper -->
+			<div id="footer-wrapper">
+
+				<!-- Footer -->
+					<div id="footer" class="container">
+						
+					</div>
+
+				<!-- Copyright -->
+					<div id="copyright" class="container">
+						<ul class="menu">
+							<li>&copy; Untitled. All rights reserved.</li>
+							<li>Demo images: <a href="http://ineedchemicalx.deviantart.com/">Felicia Simion</a></li>
+							<li>Design: <a href="http://html5up.net/">HTML5 UP</a></li>
+						</ul>
+					</div>
+
+			</div>
+
+	</body>
+
+</html>

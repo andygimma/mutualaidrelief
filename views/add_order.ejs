@@ -1,0 +1,489 @@
+<!DOCTYPE HTML>
+<!--
+	Telephasic 1.0 by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Mutual Aid Relief</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,600" rel="stylesheet" type="text/css" />
+		<!--[if lte IE 8]><script src="js/html5shiv.js"><![endif]-->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.dropotron.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-panels.min.js"></script>
+		<script src="js/init.js"></script>
+		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
+		<script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
+
+		<noscript>
+			<link rel="stylesheet" href="css/skel-noscript.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-n1.css" />
+		</noscript>
+		<script>
+
+		</script>
+		  <script>
+
+		  function checkAvailableAndSumbit() {	
+		  // check if warehouse order_number person_name and address aren't empty
+		  var warehouse = $('#warehouse').val();
+		  var order_number = $('#order_number').val();
+		  var person_name = $('#person_name').val();
+		  var address = $('#address').val();
+		  
+		  var number1 = $('#number1').val();
+		  var bad_numbers = '';
+		  if (number1=='') {
+		      
+		  } else if((parseFloat(number1) == parseInt(number1)) && !isNaN(number1)){
+		      
+		  } else { 
+		      bad_numbers += " First";
+		  } 
+		  
+		  var number2 = $('#number2').val();
+		  if (number2=='') {
+		      
+		  } else if((parseFloat(number2) == parseInt(number2)) && !isNaN(number2)){
+		      
+		  } else { 
+		      bad_numbers += " Second";
+		  } 
+		  var number3 = $('#number3').val();
+		  if (number3=='') {
+		      
+		  } else if((parseFloat(number3) == parseInt(number3)) && !isNaN(number3)){
+		      
+		  } else { 
+		      bad_numbers += " Third";
+		  } 
+		  
+		  var number4 = $('#number4').val();
+		  if (number4=='') {
+		      
+		  } else if((parseFloat(number4) == parseInt(number4)) && !isNaN(number4)){
+		      
+		  } else { 
+		      bad_numbers += " Fourth";
+		  } 
+		  var number5 = $('#number5').val();
+		  if (number5=='') {
+		      
+		  } else if((parseFloat(number5) == parseInt(number5)) && !isNaN(number5)){
+		      
+		  } else { 
+		      bad_numbers += " Fifth";
+		  } 
+		  var number6 = $('#number6').val();
+		  if (number6=='') {
+		      
+		  } else if((parseFloat(number6) == parseInt(number6)) && !isNaN(number6)){
+		      
+		  } else { 
+		      bad_numbers += " Sixth";
+		  } 
+		  var number7 = $('#number7').val();
+		  if (number7=='') {
+		      
+		  } else if((parseFloat(number7) == parseInt(number7)) && !isNaN(number7)){
+		      
+		  } else { 
+		      bad_numbers += " Seventh";
+		  } 
+		  var number8 = $('#number8').val();
+		  if (number8=='') {
+		      
+		  } else if((parseFloat(number8) == parseInt(number8)) && !isNaN(number8)){
+		      
+		  } else { 
+		      bad_numbers += " Eighth";
+		  } 
+		  var number9 = $('#number9').val();
+		  if (number9=='') {
+		      
+		  } else if((parseFloat(number9) == parseInt(number9)) && !isNaN(number9)){
+		      
+		  } else { 
+		      bad_numbers += " Ninth";
+		  } 
+		  var number10 = $('#number10').val();
+		  if (number10=='') {
+		      
+		  } else if((parseFloat(number10) == parseInt(number10)) && !isNaN(number10)){
+		      
+		  } else { 
+		      bad_numbers += " Tenth";
+		  } 
+		  var number11 = $('#number11').val();
+		  if (number11=='') {
+		      
+		  } else if((parseFloat(number11) == parseInt(number11)) && !isNaN(number11)){
+		      
+		  } else { 
+		      bad_numbers += " Eleventh";
+		  } 
+		  var number12 = $('#number12').val();
+		  if (number12=='') {
+		      
+		  } else if((parseFloat(number12) == parseInt(number12)) && !isNaN(number12)){
+		      
+		  } else { 
+		      bad_numbers += " Twelfth";
+		  } 
+		  if (bad_numbers != ''){
+		    var message = "There aren't numbers in these items" + bad_numbers;
+		    alert(message);
+		    return false;
+		  }
+		  if (warehouse == 'none' || order_number == '' || person_name == '' || address == '' || name1 == '') {
+		    alert("Must properly select a Warehouse and fill out Order Number, Person's Name, and Address and at least one Item");
+		    return false;
+		  } else {
+		    var send_object = new Object();
+		    
+		    send_object.warehouse = $('#warehouse').val();
+		    send_object.name1 = $('#name1').val();
+		    send_object.number1 = $('#number1').val();
+		    send_object.name2 = $('#name2').val();
+		    send_object.number2 = $('#number2').val();
+		    send_object.name3 = $('#name3').val();
+		    send_object.number3 = $('#number3').val();
+		    send_object.name4 = $('#name4').val();
+		    send_object.number4 = $('#number4').val();
+		    send_object.name5 = $('#name5').val();
+		    send_object.number5 = $('#number5').val();
+		    send_object.name6 = $('#name6').val();
+		    send_object.number6 = $('#number6').val();
+		    send_object.name7 = $('#name7').val();
+		    send_object.number7 = $('#number7').val();
+		    send_object.name8 = $('#name8').val();
+		    send_object.number8 = $('#number8').val();
+		    send_object.name9 = $('#name9').val();
+		    send_object.number9 = $('#number9').val();
+		    send_object.name10 = $('#name10').val();
+		    send_object.number10 = $('#number10').val();
+		    send_object.name11 = $('#name11').val();
+		    send_object.number11 = $('#number11').val();
+		    send_object.name12 = $('#name12').val();
+		    send_object.number12 = $('#number12').val();
+		  
+		    var data = {
+			name: "name",
+			address:"addr"
+		    }
+
+		    $.ajax({
+		      type: 'POST',
+		      data: JSON.stringify(send_object),
+		      contentType: 'application/json',
+		      url: '/api/check_availability_json',
+		      success: function (data) {
+			    if(data.go) {
+			      alert("send form");
+			      document.forms[0].submit();return false;
+			    } else {
+			      alert("Not all items are available");
+			    }
+			},
+		    });
+		  }
+		
+		}
+		
+		function is_int(value){ 
+		  if((parseFloat(value) == parseInt(value)) && !isNaN(value)){
+		      return true;
+		  } else { 
+		      return false;
+		  } 
+		}
+		</script>
+
+	</head>
+	<body class="left-sidebar">
+
+		<!-- Header Wrapper -->
+			<div id="header-wrapper">
+						
+				<!-- Header -->
+					<div id="header" class="container">
+						
+						<!-- Logo -->
+							<h1 id="logo"><a href="/">Mutual Aide Relief</a></h1>
+						
+						<!-- Nav -->
+							<nav id="nav">
+							<ul>
+								    <li><a href="/inventory">Inventory</a></li>
+								    <li><a href="/cases">Cases</a></li>
+								    <li class="break">
+								    <li><a href="/help">Help</a></li>
+								    <%if (signed_in) { %>
+								      <li><a href="/signout">Signout</a></li>
+								    <% } else { %>
+								      <li><a href="/signin">Signin</a></li>
+								    <% } %>
+								</ul>
+							</nav>
+
+					</div>
+
+			</div>
+
+		<!-- Main Wrapper -->
+			<div class="wrapper">
+
+				<div class="container">
+					<div class="row" id="main">
+						<div class="4u">
+
+							<!-- Sidebar -->
+								<section id="sidebar">
+									<section>
+										<header>
+											<h3>Inventory</h3>
+										</header>
+										<ul>
+										<li><a href="/add_inventory">Add Inventory</a></li>
+										<li><a href="/view_inventory">View Inventory</a></li>
+										</ul>
+										<hr>
+										<header>
+											<h3>Orders</h3>
+										</header>
+										<ul>
+										<li><a href="/add_order">Add Order</a></li>
+										<li><a href="/view_orders">View Orders</a></li>
+										</ul>
+										<hr>
+										
+										<header>
+											<h3>Deliveries</h3>
+										</header>
+										<ul>
+										<li><a href="/add_delivery">Add Delivery</a></li>
+										<li><a href="/view_deliveries">View Deliveries</a></li>
+										</ul>
+										<hr>
+										<header>
+											<h3>Cases</h3>
+										</header>
+										<ul>
+										<li><a href="/add_case">Add Case</a></li>
+										<li><a href="/view_cases">View Cases</a></li>
+										</ul>
+										<hr>
+										
+
+									</section>
+								
+								</section>
+					
+						</div>
+						<div class="8u skel-cell-mainContent">
+					
+							<!-- Content -->
+								<article id="content">
+									<header>
+										<h2>Create Order</h2>
+<!-- 										<span>Your homepage</span> -->
+									</header>
+									<% if (typeof messages != 'undefined') { %>
+									<p class="messages"><%= messages %></p>
+									<% } %>
+								      
+									
+									<form class="blank" method="post" action="/add_order_post">
+										<span id="availability_error"></span>
+										<br>
+									<select id="warehouse" name="warehouse">
+											  <option value="none">Select a Warehouse</option>
+											  <% warehouses.forEach( function( warehouse ){ %>
+										    <option value="<%= warehouse._id %>"><%= warehouse.name %></option>
+										    <% }); %>
+										  </select>
+									      <input id="order_number" name="order_number" placeholder="Order Number" type="text" class="text" />
+									       
+									      <input id="person_name" name="person_name" placeholder="Person's Name" type="text" class="text" />
+									      <input id="address" name="address" placeholder="Address" type="text" class="text" />
+									      
+									      
+									      <div class="row">
+									      
+									      <div class="6u">
+									      <input id="name1" name="name1" placeholder="Item Name" type="text" class="text" />
+									      </div>
+							      
+									      <div class="6u">	
+									      <input id="number1" name="number1" placeholder="Number" type="text" class="text" />
+												      <input type="hidden" name="user_email" value="<%= user.email %>">
+									      </div>
+									      </div>
+									      <div class="row">
+									      <div class="6u">
+									      <input id="name2" name="name2" placeholder="Item Name" type="text" class="text" />
+									      </div>
+							      
+									      <div class="6u">	
+									      <input id="number2" name="number2" placeholder="Number" type="text" class="text" />
+												      <input type="hidden" name="user_email" value="<%= user.email %>">
+									      </div>
+									      </div>
+									      
+									      <div class="row">
+									      <div class="6u">
+									      <input id="name3" name="name3" placeholder="Item Name" type="text" class="text" />
+									      </div>
+							      
+									      <div class="6u">	
+									      <input id="number3" name="number3" placeholder="Number" type="text" class="text" />
+												      <input type="hidden" name="user_email" value="<%= user.email %>">
+									      </div>
+									      </div>
+									      
+									      <div class="row">
+									      <div class="6u">
+									      <input id="name4" name="name4" placeholder="Item Name" type="text" class="text" />
+									      </div>
+							      
+									      <div class="6u">	
+									      <input id="number4" name="number4" placeholder="Number" type="text" class="text" />
+												      <input type="hidden" name="user_email" value="<%= user.email %>">
+									      </div>
+									      </div>
+									      
+									      <div class="row">
+									      <div class="6u">
+									      <input id="name5" name="name5" placeholder="Item Name" type="text" class="text" />
+									      </div>
+							      
+									      <div class="6u">	
+									      <input id="number5" name="number5" placeholder="Number" type="text" class="text" />
+												      <input type="hidden" name="user_email" value="<%= user.email %>">
+									      </div>
+									      </div>
+									      
+									      <div class="row">
+									      <div class="6u">
+									      <input id="name6" name="name6" placeholder="Item Name" type="text" class="text" />
+									      </div>
+							      
+									      <div class="6u">	
+									      <input id="number6" name="number6" placeholder="Number" type="text" class="text" />
+												      <input type="hidden" name="user_email" value="<%= user.email %>">
+									      </div>
+									      </div>
+									      
+									      <div class="row">
+									      <div class="6u">
+									      <input id="name7" name="name7" placeholder="Item Name" type="text" class="text" />
+									      </div>
+							      
+									      <div class="6u">	
+									      <input id="number7" name="number7" placeholder="Number" type="text" class="text" />
+												      <input type="hidden" name="user_email" value="<%= user.email %>">
+									      </div>
+									      </div>
+									      
+									      <div class="row">
+									      <div class="6u">
+									      <input id="name8" name="name8" placeholder="Item Name" type="text" class="text" />
+									      </div>
+							      
+									      <div class="6u">	
+									      <input id="number8" name="number8" placeholder="Number" type="text" class="text" />
+												      <input type="hidden" name="user_email" value="<%= user.email %>">
+									      </div>
+									      </div>
+									      
+									      <div class="row">
+									      <div class="6u">
+									      <input id="name9" name="name9" placeholder="Item Name" type="text" class="text" />
+									      </div>
+							      
+									      <div class="6u">	
+									      <input id="number9" name="number9" placeholder="Number" type="text" class="text" />
+												      <input type="hidden" name="user_email" value="<%= user.email %>">
+									      </div>
+									      </div>
+									      
+									      <div class="row">
+									      <div class="6u">
+									      <input id="name10" name="name10" placeholder="Item Name" type="text" class="text" />
+									      </div>
+							      
+									      <div class="6u">	
+									      <input id="number10" name="number10" placeholder="Number" type="text" class="text" />
+												      <input type="hidden" name="user_email" value="<%= user.email %>">
+									      </div>
+									      </div>
+									      
+									      <div class="row">
+									      <div class="6u">
+									      <input id="name11" name="name11" placeholder="Item Name" type="text" class="text" />
+									      </div>
+							      
+									      <div class="6u">	
+									      <input id="number11" name="number11" placeholder="Number" type="text" class="text" />
+												      <input type="hidden" name="user_email" value="<%= user.email %>">
+									      </div>
+									      </div>
+									      
+									      <div class="row">
+									      <div class="6u">
+									      <input id="name12" name="name12" placeholder="Item Name" type="text" class="text" />
+									      </div>
+							      
+									      <div class="6u">	
+									      <input id="number12" name="number12" placeholder="Number" type="text" class="text" />
+												      <input type="hidden" name="user_email" value="<%= user.email %>">
+									      </div>
+									      </div>
+									      
+									      
+									      
+										<br>
+	
+										
+										<div class="row">
+											<div class="12u">
+												<a href="#" onclick="checkAvailableAndSumbit()" class="button button-icon icon icon-envelope">Submit</a>
+											</div>
+										</div>
+									</form>
+
+								</article>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+		<!-- Footer Wrapper -->
+			<div id="footer-wrapper">
+
+				<!-- Footer -->
+					<div id="footer" class="container">
+						
+					</div>
+
+				<!-- Copyright -->
+					<div id="copyright" class="container">
+						<ul class="menu">
+							<li>&copy; Untitled. All rights reserved.</li>
+							<li>Demo images: <a href="http://ineedchemicalx.deviantart.com/">Felicia Simion</a></li>
+							<li>Design: <a href="http://html5up.net/">HTML5 UP</a></li>
+						</ul>
+					</div>
+
+			</div>
+
+	</body>
+
+</html>
