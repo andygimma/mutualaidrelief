@@ -52,7 +52,7 @@ module.exports.post = function(req, res){
   if (name2 != '') {
     json_array.push({name: name2, number: number2});
   }
-  if (name3 != '') }{
+  if (name3 != '') {
     json_array.push({name: name3, number: number3});
   }
   if (name4 != '') {
@@ -89,7 +89,7 @@ module.exports.post = function(req, res){
   async.series([
      function(callback) {
       for (var i = 0; i < json_array.length; i++) {
-	InventoryModel.decrement(warehouse_id, json_array[i].name, json_array[i].number function (error, warehouse) {
+	InventoryModel.decrement(warehouse_id, json_array[i].name, json_array[i].number, function(error, warehouse) {
 	      this_warehouse_name = warehouse.name;
 	      this_incident_id = warehouse.incident_id;
 	      this_incident_name = warehouse.incident_name;
