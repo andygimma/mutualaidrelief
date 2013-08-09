@@ -1,13 +1,5 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
-var osm = require('osmgeocoder');
-// var geonoder = require('geonoder')
-// 
-// var plebiscitoAddress = '293 quincy st brooklyn ny'
-// 
-// geonoder.toCoordinates(plebiscitoAddress, geonoder.providers.nominatim, function(lat, long) {
-//     console.log('Lat: ' + lat + ' Long: ' + long) // Lat: 41.8965209 Long: 12.4805225
-// })
 var WarehouseEntity = new Schema({
   name: {type: String, required: true, trim: true},
   address: {type: String, required: true, trim: true},
