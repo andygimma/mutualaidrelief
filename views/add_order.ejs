@@ -172,11 +172,8 @@
 		    send_object.number11 = $('#number11').val();
 		    send_object.name12 = $('#name12').val();
 		    send_object.number12 = $('#number12').val();
-		  
-		    var data = {
-			name: "name",
-			address:"addr"
-		    }
+		   
+		    alert("D");
 
 		    $.ajax({
 		      type: 'POST',
@@ -184,6 +181,7 @@
 		      contentType: 'application/json',
 		      url: '/api/check_availability_json',
 		      success: function (data) {
+		      alert(data);
 			    if(data.go) {
 			      alert("send form");
 			      document.forms[0].submit();return false;

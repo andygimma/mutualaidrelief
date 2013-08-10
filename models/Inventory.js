@@ -105,15 +105,22 @@ module.exports.check_availability = function(warehouse_id, name, total, callback
   
 }
 
-module.exports.decrement = function(warehouse_name, name, total_units, callback) {
+module.exports.decrement = function(warehouse_id, name, total_units, callback) {
   var now = Date.now()
   Inventory.findOne({ warehouse_id: warehouse_id, name: name }, function (err, doc){
-    var total = doc.total_units;
-    doc.total_units = total - parseInt(total_units);
-    doc.modified_at = now;
-    console.log(doc.total_units);
-    doc.save();
-    callback(err, doc);
+    if (!err && doc != null) {
+      console.log(doc);
+      var total = doc.total_units;
+      doc.total_units = total - parseInt(total_units);
+      doc.modified_at = now;
+      console.log(doc.total_units);
+      doc.save();
+      callback(err, doc);
+    } else {
+      console.log("name");
+      console.log(name);
+      callback(err, doc);
+    }
   });
 }
 
@@ -134,7 +141,6 @@ module.exports.create_or_increment = function (name, total_units, warehouse_name
 
     }, 
     function(callback) {
-      console.log("warehouses");
       console.log(warehouses.length);
       if (warehouses.length == 0) {
 	console.log("p");
@@ -158,6 +164,7 @@ module.exports.create_or_increment = function (name, total_units, warehouse_name
 	doc.total_units = total + parseInt(total_units);
 	console.log(doc.total_units);
 	doc.save();
+	callback(err, doc);
       });
 	
       }
@@ -165,8 +172,6 @@ module.exports.create_or_increment = function (name, total_units, warehouse_name
     },], function(err) { //This function gets called after the two tasks have called their "task callbacks"
         if (err){
 	  console.log(err.message);
-	  res.redirect("/error");
-	  return next(err);
 	}
 	callback();
     });
@@ -189,9 +194,7 @@ module.exports.create = function (req, res) {
 	console.log("saving inventory item");
 	if (!err) {
 	  console.log("inventory item saved");
-	  res.redirect("/list-inventory");
 	} else {
-	  res.redirect("/error");
 	}
       });
     } else {
@@ -204,7 +207,6 @@ module.exports.create = function (req, res) {
 	console.log(doc.total_units);
 	doc.save();
       });
-      res.redirect("/inventory");
 
     }  
  });

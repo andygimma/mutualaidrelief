@@ -1,0 +1,260 @@
+<!DOCTYPE HTML>
+<!--
+	Telephasic 1.0 by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Mutual Aid Relief</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,600" rel="stylesheet" type="text/css" />
+		<!--[if lte IE 8]><script src="js/html5shiv.js"><![endif]-->
+		<script src="/js/jquery.min.js"></script>
+		<script src="/js/jquery.dropotron.js"></script>
+		<script src="/js/skel.min.js"></script>
+		<script src="/js/skel-panels.min.js"></script>
+		<script src="/js/init.js"></script>
+		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
+		<script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
+
+		<noscript>
+			<link rel="stylesheet" href="/css/skel-noscript.css" />
+			<link rel="stylesheet" href="/css/style.css" />
+			<link rel="stylesheet" href="/css/style-n1.css" />
+		</noscript>
+		  <script>
+		  function checkAndSubmit() {
+		    document.forms[0].submit();return false;
+		}
+		</script>
+		
+		<script>
+		$(function() {
+
+		  $( "#warehouse" ).change(function() {
+		  var selected = $( this ).val();
+		  if (selected == "none") {
+		    window.location.href = "/view_orders/";
+		  } else {
+		    window.location.href = "/view_orders/" + selected;
+		  }
+		  });
+		
+		});
+		</script>
+		
+		<script>
+		function searchName() {
+		  var name = $( "#name" ).val();
+		  window.location.href = "/view_order_by_number/" + name;
+		  
+
+		}
+		</script>
+
+	</head>
+	<body class="left-sidebar">
+
+		<!-- Header Wrapper -->
+			<div id="header-wrapper">
+						
+				<!-- Header -->
+					<div id="header" class="container">
+						
+						<!-- Logo -->
+							<h1 id="logo"><a href="/">Mutual Aide Relief</a></h1>
+						
+						<!-- Nav -->
+							<nav id="nav">
+							<ul>
+								    <li><a href="/inventory">Inventory</a></li>
+								    <li><a href="/cases">Cases</a></li>
+								    <li class="break">
+								    <li><a href="/help">Help</a></li>
+								    <%if (signed_in) { %>
+								      <li><a href="/signout">Signout</a></li>
+								    <% } else { %>
+								      <li><a href="/signin">Signin</a></li>
+								    <% } %>
+								</ul>
+							</nav>
+
+					</div>
+
+			</div>
+
+		<!-- Main Wrapper -->
+			<div class="wrapper">
+
+				<div class="container">
+					<div class="row" id="main">
+						<div class="4u">
+
+							<!-- Sidebar -->
+								<section id="sidebar">
+									<section>
+										<header>
+											<h3>Inventory</h3>
+										</header>
+										<ul>
+										<li><a href="/add_inventory">Add Inventory</a></li>
+										<li><a href="/view_inventory">View Inventory</a></li>
+										</ul>
+										<hr>
+										<header>
+											<h3>Orders</h3>
+										</header>
+										<ul>
+										<li><a href="/add_order">Add Order</a></li>
+										<li><a href="/view_orders">View Orders</a></li>
+										</ul>
+										<hr>
+										
+										<header>
+											<h3>Deliveries</h3>
+										</header>
+										<ul>
+										<li><a href="/add_delivery">Add Delivery</a></li>
+										<li><a href="/view_deliveries">View Deliveries</a></li>
+										</ul>
+										<hr>
+										<header>
+											<h3>Cases</h3>
+										</header>
+										<ul>
+										<li><a href="/add_case">Add Case</a></li>
+										<li><a href="/view_cases">View Cases</a></li>
+										</ul>
+										<hr>
+										
+
+									</section>
+								
+								</section>
+					
+						</div>
+						<div class="8u skel-cell-mainContent">
+					
+							<!-- Content -->
+								<article id="content">
+									<header>
+										<h2>View Full Order</h2>
+<!-- 										<span>Your homepage</span> -->
+									</header>
+									<% if (typeof messages != 'undefined') { %>
+									<p class="messages"><%= messages %></p>
+									<% } %>
+								 
+									<br>
+																										<div class="row">
+									<div class="9u">
+									  <form>
+									  <input id="name" name="name" placeholder="Search By Order Number" type="text" class="text" />
+								  
+						    
+									</div>
+									
+									<div class="2u">
+									  <a href="#" onclick="searchName()" class="button button-icon icon icon-envelope">Search</a>
+									</div>
+									  </form>						
+									  </div>
+									  <br>
+									 
+									<% orders.forEach( function( order ){ %>
+						
+									   <p> <%= order.order_number %> | <%= order.warehouse_name %></p>
+									   <table border="1">
+									    <tr>
+									    <td>Item</td>
+									    <td>Number</td>
+									    </tr>
+									    <tr>
+									  <td><%= order.item1 %></td>
+									  <td><%= order.number1 %></td>
+									  </tr>
+									    <tr>
+									  <td><%= order.item2 %></td>
+									  <td><%= order.number2 %></td>
+									  </tr>
+									    <tr>
+									  <td><%= order.item3 %></td>
+									  <td><%= order.number3 %></td>
+									  </tr>
+									    <tr>
+									  <td><%= order.item4 %></td>
+									  <td><%= order.number4 %></td>
+									  </tr>
+									    <tr>
+									  <td><%= order.item5 %></td>
+									  <td><%= order.number5 %></td>
+									  </tr>
+									    <tr>
+									  <td><%= order.item6 %></td>
+									  <td><%= order.number6 %></td>
+									  </tr>
+									    <tr>
+									  <td><%= order.item7 %></td>
+									  <td><%= order.number7 %></td>
+									  </tr>
+									    <tr>
+									  <td><%= order.item8 %></td>
+									  <td><%= order.number8 %></td>
+									  </tr>
+									    <tr>
+									  <td><%= order.item9 %></td>
+									  <td><%= order.number9 %></td>
+									  </tr>
+									    <tr>
+									  <td><%= order.item10 %></td>
+									  <td><%= order.number10 %></td>
+									  </tr>
+									    <tr>
+									  <td><%= order.item11 %></td>
+									  <td><%= order.number11 %></td>
+									  </tr>
+									    <tr>
+									  <td><%= order.item12 %></td>
+									  <td><%= order.number12 %></td>
+									  </tr>
+									    </table>
+								
+
+								
+									 <% }); %>
+									</header>
+								
+								</article>
+
+								</article>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+		<!-- Footer Wrapper -->
+			<div id="footer-wrapper">
+
+				<!-- Footer -->
+					<div id="footer" class="container">
+						
+					</div>
+
+				<!-- Copyright -->
+					<div id="copyright" class="container">
+						<ul class="menu">
+							<li>&copy; Untitled. All rights reserved.</li>
+							<li>Demo images: <a href="http://ineedchemicalx.deviantart.com/">Felicia Simion</a></li>
+							<li>Design: <a href="http://html5up.net/">HTML5 UP</a></li>
+						</ul>
+					</div>
+
+			</div>
+
+	</body>
+
+</html>

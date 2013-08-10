@@ -23,6 +23,8 @@ module.exports.post = function(req, res){
       console.log(req.body.name1);
       if (req.body.name1 == '' || req.body.number1 == '') {
 	console.log("no name or number");
+	callback()
+
       } else {
 	InventoryModel.check_availability(req.body.warehouse, req.body.name1, req.body.number1, function (error, available) {
 	  console.log("answer");
@@ -43,6 +45,7 @@ module.exports.post = function(req, res){
       // test for existence of name2, number2
       if (req.body.name2 == '' || req.body.number2 == '') {
 	console.log("no name or number");
+	callback()
       } else {
 	InventoryModel.check_availability(req.body.warehouse, req.body.name2, req.body.number2, function (error, available) {
 	  console.log("answer");
@@ -62,6 +65,7 @@ module.exports.post = function(req, res){
       // test for existence of name2, number2
       if (req.body.name3 == '' || req.body.number3 == '') {
 	console.log("no name or number");
+	callback()
       } else {
 	InventoryModel.check_availability(req.body.warehouse, req.body.name3, req.body.number3, function (error, available) {
 	  console.log("answer");
@@ -79,6 +83,7 @@ module.exports.post = function(req, res){
       // test for existence of name2, number2
       if (req.body.name4 == '' || req.body.number4 == '') {
 	console.log("no name or number");
+	callback()
       } else {
 	InventoryModel.check_availability(req.body.warehouse, req.body.name4, req.body.number4, function (error, available) {
 	  console.log("answer");
@@ -98,6 +103,7 @@ module.exports.post = function(req, res){
       // test for existence of name2, number2
       if (req.body.name5 == '' || req.body.number5 == '') {
 	console.log("no name or number");
+	callback()
       } else {
 	InventoryModel.check_availability(req.body.warehouse, req.body.name5, req.body.number5, function (error, available) {
 	  console.log("answer");
@@ -117,6 +123,7 @@ module.exports.post = function(req, res){
       // test for existence of name2, number2
       if (req.body.name6 == '' || req.body.number6 == '') {
 	console.log("no name or number");
+	callback()
       } else {
 	InventoryModel.check_availability(req.body.warehouse, req.body.name6, req.body.number6, function (error, available) {
 	  console.log("answer");
@@ -136,6 +143,7 @@ module.exports.post = function(req, res){
       // test for existence of name2, number2
       if (req.body.name7 == '' || req.body.number7 == '') {
 	console.log("no name or number");
+	callback()
       } else {
 	InventoryModel.check_availability(req.body.warehouse, req.body.name7, req.body.number7, function (error, available) {
 	  console.log("answer");
@@ -155,10 +163,12 @@ module.exports.post = function(req, res){
       // test for existence of name2, number2
       if (req.body.name8 == '' || req.body.number8 == '') {
 	console.log("no name or number");
+	callback()
       } else {
 	InventoryModel.check_availability(req.body.warehouse, req.body.name8, req.body.number8, function (error, available) {
 	  console.log("answer");
 	  console.log(available);
+	  
 	  if (!available) {
 	    unavailable_object.name2 == true
 	    all_go = false;
@@ -175,6 +185,7 @@ module.exports.post = function(req, res){
       // test for existence of name2, number2
       if (req.body.name9 == '' || req.body.number9 == '') {
 	console.log("no name or number");
+	callback()
       } else {
 	InventoryModel.check_availability(req.body.warehouse, req.body.name9, req.body.number9, function (error, available) {
 	  console.log("answer");
@@ -194,6 +205,7 @@ module.exports.post = function(req, res){
       // test for existence of name2, number2
       if (req.body.name10 == '' || req.body.number10 == '') {
 	console.log("no name or number");
+	callback()
       } else {
 	InventoryModel.check_availability(req.body.warehouse, req.body.name10, req.body.number10, function (error, available) {
 	  console.log("answer");
@@ -213,6 +225,7 @@ module.exports.post = function(req, res){
       // test for existence of name2, number2
       if (req.body.name11 == '' || req.body.number11 == '') {
 	console.log("no name or number");
+	callback()
       } else {
 	InventoryModel.check_availability(req.body.warehouse, req.body.name11, req.body.number11, function (error, available) {
 	  console.log("answer");
@@ -232,6 +245,7 @@ module.exports.post = function(req, res){
       // test for existence of name2, number2
       if (req.body.name12 == '' || req.body.number12 == '') {
 	console.log("no name or number");
+	callback()
       } else {
 	InventoryModel.check_availability(req.body.warehouse, req.body.name12, req.body.number12, function (error, available) {
 	  console.log("answer");
@@ -262,7 +276,8 @@ module.exports.post = function(req, res){
 	} else {
 	  send = {go: false}
 	}
-	  
+	  console.log("send object");
+	  console.log(send);
           res.send(send);
 
     

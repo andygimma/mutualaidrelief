@@ -70,6 +70,13 @@ var admin_inventory_download_by_incident = require('./controllers/admin_inventor
 var add_order = require('./controllers/add_order');
 var check_availability_json = require('./controllers/check_availability_json');
 var add_order_post = require('./controllers/add_order_post.js');
+var view_orders = require('./controllers/view_orders.js');
+var view_orders_by_warehouse = require('./controllers/view_orders_by_warehouse.js');
+var view_order_by_number = require('./controllers/view_order_by_number.js');
+var add_delivery = require('./controllers/add_delivery.js');
+var view_order = require('./controllers/view_order.js');
+var cancel_order = require('./controllers/cancel_order.js');
+
 // var signout = require('./controllers/signout.js');
 // var add_vehicle = require('./controllers/add-vehicle.js');
 // var add_orders_to_vehicle = require('./controllers/add-orders-to-vehicle.js');
@@ -185,7 +192,12 @@ app.get('/view_inventory_name/:name', ensureAuthenticated, view_inventory_by_nam
 app.get('/admin-inventory', ensureAdmin, admin_inventory.get);
 app.get('/admin_view_inventory/:warehouse_id', ensureAuthenticated, admin_view_inventory_by_warehouse.get);
 app.get('/add_order', ensureAuthenticated, add_order.get);
-app.post('/api/check_availability_json', check_availability_json.post);
+app.get('/view_orders', ensureAuthenticated, view_orders.get);
+app.get('/view_orders/:warehouse_id', ensureAuthenticated, view_orders_by_warehouse.get);
+app.get('/view_order_by_number/:order_number', ensureAuthenticated, view_order_by_number.get);
+app.get('/add_delivery', ensureAuthenticated, add_delivery.get);
+app.get('/view_order/:order_id', ensureAuthenticated, view_order.get);
+app.get('/cancel_order/:order_id', ensureAuthenticated, cancel_order.get);
 
 app.get('/signout', function(req, res){
   req.logout();
@@ -217,13 +229,15 @@ app.post('/signin',
 app.post('/signup', signup_post.post);
 app.post('/admin-add-incident', admin_add_incident_post.post);
 app.post('/update-user', ensureAdmin, update_user_post.post);
-app.post('/admin-edit-incident', admin_edit_incident_post.post);
-app.post('/admin-add-warehouse', admin_add_warehouse_post.post);
-app.post('/admin-edit-warehouse', admin_edit_warehouse_post.post);
-app.post('/admin-add-vehicle', admin_add_vehicle_post.post);
-app.post('/admin-edit-vehicle', admin_edit_vehicle_post.post);
-app.post('/add_inventory_post', add_inventory_post.post);
-app.post('/add_order_post', add_order_post.post);
+app.post('/admin-edit-incident', ensureAdmin, admin_edit_incident_post.post);
+app.post('/admin-add-warehouse', ensureAdmin, admin_add_warehouse_post.post);
+app.post('/admin-edit-warehouse', ensureAdmin, admin_edit_warehouse_post.post);
+app.post('/admin-add-vehicle', ensureAdmin, admin_add_vehicle_post.post);
+app.post('/admin-edit-vehicle', ensureAdmin, admin_edit_vehicle_post.post);
+app.post('/add_inventory_post', ensureAuthenticated, add_inventory_post.post);
+app.post('/add_order_post', ensureAuthenticated, add_order_post.post);
+app.post('/api/check_availability_json', ensureAuthenticated, check_availability_json.post);
+
 
 // app.post('/add-warehouse', WarehouseModel.create);
 // app.post('/add-inventory', InventoryModel.create);
@@ -240,7 +254,7 @@ function ensureAuthenticated(req, res, next) {
 }
 
 function ensureAuthorized(req, res, next) {
-  if (req.isAuthenticated() && user.authorized == "true") { return next(); }
+  if (req.isAuthenticated() && req.user.authorized == "true") { return next(); }
   res.redirect('/signin')
 }
 
