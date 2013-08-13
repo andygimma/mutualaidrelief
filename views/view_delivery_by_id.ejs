@@ -17,32 +17,12 @@
 		<script src="/js/skel.min.js"></script>
 		<script src="/js/skel-panels.min.js"></script>
 		<script src="/js/init.js"></script>
-		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
-		<script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
-
 		<noscript>
 			<link rel="stylesheet" href="/css/skel-noscript.css" />
 			<link rel="stylesheet" href="/css/style.css" />
 			<link rel="stylesheet" href="/css/style-n1.css" />
 		</noscript>
-		  <script>
-		  function checkAndSubmit() {
-		    document.forms[0].submit();return false;
-		}
-		</script>
-		
-		<script>
-	
-		
-		<script>
-		function searchName() {
-		  var name = $( "#name" ).val();
-		  window.location.href = "/view_order_by_number/" + name;
-		  
-
-		}
-		</script>
-
+			
 	</head>
 	<body class="left-sidebar">
 
@@ -57,7 +37,7 @@
 						
 						<!-- Nav -->
 							<nav id="nav">
-							<ul>
+								<ul>
 								    <li><a href="/inventory">Inventory</a></li>
 								    <li><a href="/cases">Cases</a></li>
 								    <li class="break">
@@ -88,39 +68,24 @@
 											<h3>Inventory</h3>
 										</header>
 										<ul>
-										<li><a href="/add_inventory">Add Inventory</a></li>
-										<li><a href="/view_inventory">View Inventory</a></li>
+										<li><a href="/warehouses">See Warehouses</a></li>
+										<li><a href="/add-inventory">Add Inventory</a></li>
+										<li><a href="/search-inventory">Search Inventory</a></li>
+										<li><a href="/list-inventory">See Current Inventory</a></li>
 										</ul>
 										<hr>
-										<header>
-											<h3>Orders</h3>
-										</header>
-										<ul>
-										<li><a href="/add_order">Add Order</a></li>
-										<li><a href="/view_orders">View Orders</a></li>
-										</ul>
-										<hr>
-										
 										<header>
 											<h3>Deliveries</h3>
 										</header>
 										<ul>
-										<li><a href="/add_delivery">Add Delivery</a></li>
-										<li><a href="/view_deliveries">View Deliveries</a></li>
+										<li><a href="/create-delivery-order">Create Delivery Order</a></li>
+										<li><a href="/add-orders-to-vehicle">Add Orders to a Vehicle</a></li>
+										<li><a href="/mark-delivery-complete">Mark Delivery as complete</a></li>
+										<li><a href="/cancel-delivery">Cancel Delivery</a></li>
+										<li><a href="/see-all-current-deliveries">See All Current Deliveries</a></li>
 										</ul>
-										<hr>
-										<header>
-											<h3>Cases</h3>
-										</header>
-										<ul>
-										<li><a href="/add_case">Add Case</a></li>
-										<li><a href="/view_cases">View Cases</a></li>
-										</ul>
-										<hr>
-										
-
 									</section>
-								
+									
 								</section>
 					
 						</div>
@@ -129,45 +94,28 @@
 							<!-- Content -->
 								<article id="content">
 									<header>
-										<h2>Add Orders To Delivery</h2>
-<!-- 										<span>Your homepage</span> -->
+										<h2>Delivery</h2>
+										<span></span>
 									</header>
 									<% if (typeof messages != 'undefined') { %>
 									<p class="messages"><%= messages %></p>
 									<% } %>
-								    <form method="post" action="/add_delivery_post">
-									<div class="row">
-											<div class="12u">
-										<select id="vehicle" name="vehicle">
-											  <option value="none">Choose A Vehicle</option>
-											  <% vehicles.forEach( function( vehicle ){ %>
-										    <option value="<%= vehicle._id %>"><%= vehicle.owner_name %></option>
-										    <% }); %>
-										  </select>
-										  </div>
-										  </div>
-								
-									  <br>
-									<% var checkbox_number = 0; %>
-									<% orders.forEach( function( order ){ %>
-									<% checkbox_number += 1;%>
-						 <a href="/view_order/<%= order._id %>" class="button button-icon icon icon-envelope">View Order</a>
-									   <input type="checkbox" name="order_number<%= checkbox_number %>" value="<%= order.order_number %>"><%= order.order_number %>
-
-									   <br>
-								
-									 <% }); %>
-									 <a href="#" onclick="checkAndSubmit()" class="button button-icon icon icon-envelope">Submit</a>
-									 									</form>
-
-									</header>
+									  <p><%= deliveries.vehicle_driver %></p>
+<!-- 									  For loop for array values, allow each to open in a new window. Arrays are for order numbers -->				<h3>Order Numbers</h3>
+									<% deliveries.order_numbers.forEach(function(name){ %>
+									    <p><%= name %></p>
+									    <a href="/view_order_by_number/<%=name%>" class="button button-icon icon icon-envelope">View Order</a>
+									  <% }) %>
+									  
+									 
+									 
 								
 								</article>
-
-								</article>
+							
 
 						</div>
 					</div>
+					
 				</div>
 			</div>
 
@@ -182,7 +130,7 @@
 				<!-- Copyright -->
 					<div id="copyright" class="container">
 						<ul class="menu">
-							<li>&copy; Untitled. All rights reserved.</li>
+							<li>Untitled. All rights reserved.</li>
 							<li>Demo images: <a href="http://ineedchemicalx.deviantart.com/">Felicia Simion</a></li>
 							<li>Design: <a href="http://html5up.net/">HTML5 UP</a></li>
 						</ul>
@@ -191,5 +139,4 @@
 			</div>
 
 	</body>
-
 </html>

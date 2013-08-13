@@ -76,7 +76,14 @@ var view_order_by_number = require('./controllers/view_order_by_number.js');
 var add_delivery = require('./controllers/add_delivery.js');
 var view_order = require('./controllers/view_order.js');
 var cancel_order = require('./controllers/cancel_order.js');
-
+var view_orders_by_status = require('./controllers/view_orders_by_status.js');
+var add_delivery_post = require('./controllers/add_delivery_post.js');
+var view_deliveries = require('./controllers/view_deliveries.js');
+var view_deliveries_by_id = require('./controllers/view_deliveries_by_id.js');
+var view_deliveries_by_status = require('./controllers/view_deliveries_by_status.js');
+var view_deliveries_by_order_number = require('./controllers/view_deliveries_by_order_number.js');
+var cancel_delivery = require('./controllers/cancel_delivery.js');
+var complete_delivery = require('./controllers/complete_delivery.js');
 // var signout = require('./controllers/signout.js');
 // var add_vehicle = require('./controllers/add-vehicle.js');
 // var add_orders_to_vehicle = require('./controllers/add-orders-to-vehicle.js');
@@ -198,6 +205,14 @@ app.get('/view_order_by_number/:order_number', ensureAuthenticated, view_order_b
 app.get('/add_delivery', ensureAuthenticated, add_delivery.get);
 app.get('/view_order/:order_id', ensureAuthenticated, view_order.get);
 app.get('/cancel_order/:order_id', ensureAuthenticated, cancel_order.get);
+app.get('/view_orders_by_status/:status', ensureAuthenticated, view_orders_by_status.get);
+app.get('/view_deliveries', ensureAuthenticated, view_deliveries.get);
+app.get('/view_delivery/:delivery_id', ensureAuthenticated, view_deliveries_by_id.get);
+app.get('/view_deliveries_by_status/:status', ensureAuthenticated, view_deliveries_by_status.get);
+app.get('/view_deliveries_by_order_number/:order_number', ensureAuthenticated, view_deliveries_by_order_number.get);
+app.get('/cancel_delivery/:delivery_id', ensureAuthenticated, cancel_delivery.get);
+app.get('/complete_delivery/:delivery_id', ensureAuthenticated, complete_delivery.get);
+
 
 app.get('/signout', function(req, res){
   req.logout();
@@ -237,6 +252,7 @@ app.post('/admin-edit-vehicle', ensureAdmin, admin_edit_vehicle_post.post);
 app.post('/add_inventory_post', ensureAuthenticated, add_inventory_post.post);
 app.post('/add_order_post', ensureAuthenticated, add_order_post.post);
 app.post('/api/check_availability_json', ensureAuthenticated, check_availability_json.post);
+app.post('/add_delivery_post', ensureAuthenticated, add_delivery_post.post);
 
 
 // app.post('/add-warehouse', WarehouseModel.create);

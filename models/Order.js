@@ -96,6 +96,20 @@ module.exports.index_by_warehouse_id = function(warehouse_id, callback) {
     })
   
 }
+
+module.exports.index_by_status = function(status, callback) {
+    Order.find({status: status})
+    .sort('order_number')
+    .exec(function(err, q) {
+	// code here
+      if (!err) {
+	callback(err, q);
+      } else {
+	callback(err, q);
+      }
+    })
+  
+}
 module.exports.index_by_order_id = function(order_id, callback) {
     Order.find({_id: order_id})
     .sort('order_number')
@@ -108,6 +122,12 @@ module.exports.index_by_order_id = function(order_id, callback) {
       }
     })
   
+}
+
+module.exports.update = function(_id, properties_set, callback) {
+    Order.update({_id: _id}, {$set: properties_set}, {upsert: true}, function(err, incident, response, fourth) {
+      callback(err, incident, response);
+  }); 
 }
 
 module.exports.index_by_order_number = function(order_number, callback) {

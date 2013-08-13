@@ -49,7 +49,7 @@
 		<script>
 		function searchName() {
 		  var name = $( "#name" ).val();
-		  window.location.href = "/view_order_by_number/" + name;
+		  window.location.href = "/view_deliveries_by_order_number/" + name;
 		  
 
 		}
@@ -147,18 +147,7 @@
 									<% if (typeof messages != 'undefined') { %>
 									<p class="messages"><%= messages %></p>
 									<% } %>
-								      <form>
-									<div class="row">
-											<div class="12u">
-										<select id="warehouse" name="warehouse">
-											  <option value="none">Showing Orders From All Warehouses - Click To Change</option>
-											  <% warehouses.forEach( function( warehouse ){ %>
-										    <option value="<%= warehouse._id %>"><%= warehouse.name %></option>
-										    <% }); %>
-										  </select>
-										  </div>
-										  </div>
-									</form>
+								
 									<br>
 																										<div class="row">
 									<div class="9u">
@@ -174,18 +163,19 @@
 									  </form>						
 									  </div>
 									  <br>
-									  <a href="/view_orders_by_status/pending" class="button button-icon icon icon-envelope">View Pending</a>
-									  <a href="/view_orders_by_status/en_route" class="button button-icon icon icon-envelope">View En Route</a>
-									  <a href="/view_orders_by_status/delivered" class="button button-icon icon icon-envelope">Delivered</a>
-									  <br>
-									  <br>
-									  <br>
-									<% orders.forEach( function( order ){ %>
-						
-									   <p> <%= order.order_number %> | <%= order.warehouse_name %></p>
-									   <a href="/view_order/<%= order._id %>" class="button button-icon icon icon-envelope">View Order</a>
-									   <a onclick="return confirm('Are you sure want to remove this order?\n\nThis will restock the inventory and cannot be undone.');" href="/cancel_order/<%= order._id %>" class="button button-icon icon icon-envelope">Cancel Order</a>
 									  
+									  <a href="/view_deliveries_by_status/en route" class="button button-icon icon icon-envelope">View En Route</a>
+									  <a href="/view_deliveries_by_status/delivered" class="button button-icon icon icon-envelope">Delivered</a>
+									  <a href="/view_deliveries_by_status/canceled" class="button button-icon icon icon-envelope">Canceled</a>
+									  <br>
+									  <br>
+									  <br>
+									<% deliveries.forEach( function( delivery ){ %>
+						
+									   <p> <%= delivery.vehicle_driver %></p>
+									   <a href="/view_delivery/<%= delivery._id %>" class="button button-icon icon icon-envelope">View</a>
+									  <a href="/complete_delivery/<%= delivery._id %>" class="button button-icon icon icon-envelope">Mark Delivered</a>
+									  <a href="/cancel_delivery/<%= delivery._id %>" class="button button-icon icon icon-envelope">Cancel</a>
 								
 									 <% }); %>
 									</header>
