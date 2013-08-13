@@ -39,6 +39,19 @@ module.exports.create = function(incident_id, incident_name, vehicle_id, vehicle
 }
 
 module.exports.index = function(callback) {
+  Delivery.find()
+    .sort('created_at')
+    .exec(function(err, q) {
+	// code here
+      if (!err) {
+	callback(err, q);
+      } else {
+	callback(err, q);
+      }
+    })
+    
+}
+module.exports.index_en_route = function(callback) {
   Delivery.find({status: 'en route'})
     .sort('created_at')
     .exec(function(err, q) {
@@ -57,6 +70,7 @@ module.exports.index_by_status = function(status, callback) {
     .exec(function(err, q) {
 	// code here
       if (!err) {
+	console.log(q);
 	callback(err, q);
       } else {
 	callback(err, q);
@@ -87,7 +101,11 @@ module.exports.read = function(_id, callback) {
 }
 
 module.exports.update = function(_id, properties_set, callback) {
-    Delivery.update({_id: _id}, {$set: properties_set}, {upsert: true}, function(err, incident, response, fourth) {
+    Delivery.update({_id: _id}, {$set: properties_set}, {upsert: true}, function(err, incident, response) {
+      console.log("callback");
+      console.log(err);
+      console.log(incident);
+      console.log(response);
       callback(err, incident, response);
   }); 
 }

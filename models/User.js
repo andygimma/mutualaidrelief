@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 // set default for role as USER
 var UserEntity = new Schema({
-  email : { type: String, required: true, trim: true }
+  email : { type: String, required: true, trim: true, index: {unique: true}}
   , password_hash : {type: String, required: true }
   , city : { type: String, required: false, trim: true }
   , state : { type: String, required: false, trim: true }

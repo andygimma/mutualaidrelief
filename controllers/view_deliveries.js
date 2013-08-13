@@ -12,9 +12,10 @@ module.exports.get = function(req, res){
   console.log("in get");
   var deliveries;
   
+//   DeliveryModel.DeliveryEntity.remove().exec();
   async.series([
     function(callback) {
-      DeliveryModel.index(function(err, doc){
+      DeliveryModel.index_en_route(function(err, doc){
 	deliveries = doc;
 	callback();
 	console.log(doc);

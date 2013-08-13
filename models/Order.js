@@ -83,6 +83,20 @@ module.exports.index = function(callback) {
     
 }
 
+module.exports.index_by_pending = function(callback) {
+  Order.find({status: 'pending'})
+    .sort('order_number')
+    .exec(function(err, q) {
+	// code here
+      if (!err) {
+	callback(err, q);
+      } else {
+	callback(err, q);
+      }
+    })
+    
+}
+
 module.exports.index_by_warehouse_id = function(warehouse_id, callback) {
     Order.find({warehouse_id: warehouse_id})
     .sort('order_number')
@@ -130,6 +144,13 @@ module.exports.update = function(_id, properties_set, callback) {
   }); 
 }
 
+module.exports.update_by_order_number = function(order_number, properties_set, callback) {
+    Order.update({order_number: order_number}, {$set: properties_set}, {upsert: true}, function(err, incident, response, fourth) {
+      callback(err, incident, response);
+  }); 
+}
+
+
 module.exports.index_by_order_number = function(order_number, callback) {
   console.log(order_number);
     Order.find({order_number: order_number})
@@ -154,4 +175,8 @@ module.exports.remove = function(_id, callback) {
   Order.remove({_id: _id}, function (err, response) {
     callback(err, response);
   });
+}
+
+module.exports.update_multiple = function(conditions, update, options, callback) {
+  Order.update(conditions, update, options, callback);
 }

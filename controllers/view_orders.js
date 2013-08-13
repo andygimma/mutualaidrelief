@@ -15,7 +15,7 @@ module.exports.get = function(req, res){
   
   async.series([
     function(callback) {
-      OrderModel.index(function(err, doc){
+      OrderModel.index_by_pending(function(err, doc){
 	orders = doc;
 	callback();
 
@@ -36,6 +36,7 @@ module.exports.get = function(req, res){
 	  return next(err);
 	}
         //Here locals will be populated with 'user' and 'posts'
+        console.log(orders);
     res.render('view_orders.ejs', {
       layout:false,
       user: req.user,

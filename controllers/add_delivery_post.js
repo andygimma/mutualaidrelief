@@ -7,6 +7,7 @@ var dstk = require('dstk');
 var IncidentModel = require('../models/Incident.js');
 var DeliveryModel = require('../models/Delivery.js');
 var VehicleModel = require('../models/Vehicle.js');
+var OrderModel = require('../models/Order.js');
 
 
 module.exports.post = function(req, res){
@@ -54,7 +55,27 @@ module.exports.post = function(req, res){
 	  }  
 	});
 	callback();
-    },], function(err) { //This function gets called after the two tasks have called their "task callbacks"
+    },
+      function(callback) {
+     // DeliveryModel.create incident_id, incident_name, vehicle_id, vehicle_driver, order_numbers, status, callback
+	console.log("UPDATE###############################");
+	console.log(orders_array);
+	for (var i=0; i < orders_array.length; i++) {
+	  console.log(orders_array[i]);
+	  OrderModel.update_by_order_number(orders_array[i], {status: 'en route'}, function(err, doc){
+	    	console.log("UPDATE");
+
+	    console.log(doc);
+
+	  });
+	   
+	 }
+	 	    callback();
+
+	
+	
+    },
+ 	      ], function(err) { //This function gets called after the two tasks have called their "task callbacks"
         if (err){
 	  console.log(err.message);
 	  res.redirect("/error");
