@@ -1,3 +1,9 @@
+/*
+ * Developer : Andy Gimma (andy.n.gimma@gmail.com)
+ * Date : 08/14/13
+ * All code (c)2013 Andy Gimma all rights reserved
+ */
+
 // use async and dstk to get lat,lng
 // then add to database
 var async = require('async');

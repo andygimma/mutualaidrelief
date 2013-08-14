@@ -1,3 +1,9 @@
+/*
+ * Developer : Andy Gimma (andy.n.gimma@gmail.com)
+ * Date : 08/14/13
+ * All code (c)2013 Andy Gimma all rights reserved
+ */
+
 var expect = require('expect.js'),
 Browser = require('zombie'),
 browser = new Browser();
