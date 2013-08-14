@@ -163,7 +163,7 @@ app.get('/help', help.get);
 app.get('/inventory', inventory.get);
 app.get('/signup', signup.get);
 app.get('/admin', ensureAdmin, admin.get);
-app.get('/admin-add-incident', ensureAdmin, admin_add_incident.get);
+app.get('/admin-add-incident', admin_add_incident.get);
 app.get('/admin-add-vehicle', ensureAdmin, admin_add_vehicle.get);
 app.get('/admin-users', ensureAdmin, admin_users.get);
 app.get('/admin-warehouses', ensureAdmin, admin_warehouses.get);
@@ -187,7 +187,7 @@ app.get('/admin-remove-vehicle/:vehicle_id', ensureAdmin, admin_remove_vehicle.g
 app.get('/admin-edit-users/:user_id', ensureAdmin, admin_edit_users.get);
 app.get('/admin-remove-user/:user_id', ensureAdmin, admin_remove_user.get);
 app.get('/admin-cases', ensureAdmin, admin_cases.get);
-app.get('/admin-incidents', admin_incidents.get);
+app.get('/admin-incidents', ensureAdmin, admin_incidents.get);
 app.get('/admin-edit-incident/:incident_id', ensureAdmin, admin_edit_incident.get);
 app.get('/admin-edit-vehicle/:vehicle_id', ensureAdmin, admin_edit_vehicle.get);
 app.get('/admin-vehicles', ensureAdmin, admin_vehicles.get);
