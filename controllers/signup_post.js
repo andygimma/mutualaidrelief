@@ -1,4 +1,4 @@
-var WarehouseModel = require('../models/Warehouse.js');
+var UserModel = require('../models/User.js');
 
 
 // use async and dstk to get lat,lng
@@ -27,7 +27,7 @@ module.exports.post = function(req, res){
 
     },
     function(callback) {
-      WarehouseModel.create(req.body.email, req.body.password, incident_id, incident_name, function(err, user) {
+      UserModel.create(req.body.email, req.body.password, incident_id, incident_name, function(err, user) {
 	callback();
       });
     } ], function(err) { //This function gets called after the two tasks have called their "task callbacks"

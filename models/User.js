@@ -38,6 +38,10 @@ module.exports.UserEntity = User;
 
 
 module.exports.create = function(email, password, incident_id, incident_name, callback){
+    console.log(email);
+    console.log(password);
+    console.log(incident_id);
+    console.log(incident_name);
     var email = email;
     var shasum = crypto.createHash('sha1');
     var hash_salt = HASH_SALT;

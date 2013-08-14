@@ -173,7 +173,6 @@
 		    send_object.name12 = $('#name12').val();
 		    send_object.number12 = $('#number12').val();
 		   
-		    alert("D");
 
 		    $.ajax({
 		      type: 'POST',
@@ -183,10 +182,9 @@
 		      success: function (data) {
 		      alert(data);
 			    if(data.go) {
-			      alert("send form");
 			      document.forms[0].submit();return false;
 			    } else {
-			      alert("Not all items are available");
+			      alert("Not all items are available.");
 			    }
 			},
 		    });

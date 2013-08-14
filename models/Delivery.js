@@ -26,7 +26,7 @@ module.exports.create = function(incident_id, incident_name, vehicle_id, vehicle
   console.log(status);
   
   var now = Date.now();
-  var delivery = new Delivery({incident_id: "1", incident_name: "2", vehicle_id:vehicle_id, vehicle_driver:vehicle_driver, created_at: now, modified_at: now, order_numbers:order_numbers, status:"en route"});
+  var delivery = new Delivery({incident_id: incident_id, incident_name: incident_name, vehicle_id:vehicle_id, vehicle_driver:vehicle_driver, created_at: now, modified_at: now, order_numbers:order_numbers, status:"en route"});
   delivery.save(function(err){
     if(!err){
       callback(err, delivery);

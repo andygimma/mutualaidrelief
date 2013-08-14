@@ -16,7 +16,7 @@ module.exports.get = function(req, res){
   
   async.parallel([
     function(callback) {
-      OrderModel.index(function(err, doc){
+      OrderModel.index_by_pending(function(err, doc){
 	orders = doc;
 	callback();
 	console.log(doc);

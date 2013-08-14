@@ -157,8 +157,13 @@
 									   <br>
 								
 									 <% }); %>
+									 <% if (checkbox_number == 0) { %>
+									 <p>No pending orders. To create an order, go to <a href="/add_order">add order</a>.</p>
+									 
+									 <% } else { %>
 									 <a href="#" onclick="checkAndSubmit()" class="button button-icon icon icon-envelope">Submit</a>
-									 									</form>
+									 <% } %>
+						      </form>
 
 									</header>
 								
