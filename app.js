@@ -163,7 +163,7 @@ app.get('/help', help.get);
 app.get('/inventory', inventory.get);
 app.get('/signup', signup.get);
 app.get('/admin', ensureAdmin, admin.get);
-app.get('/admin-add-incident', admin_add_incident.get);
+app.get('/admin-add-incident', ensureAdmin, admin_add_incident.get);
 app.get('/admin-add-vehicle', ensureAdmin, admin_add_vehicle.get);
 app.get('/admin-users', ensureAdmin, admin_users.get);
 app.get('/admin-warehouses', ensureAdmin, admin_warehouses.get);
@@ -242,7 +242,7 @@ app.post('/signin',
                                    failureRedirect: '/signin' })
 );
 app.post('/signup', signup_post.post);
-app.post('/admin-add-incident', admin_add_incident_post.post);
+app.post('/admin-add-incident', ensureAdmin, admin_add_incident_post.post);
 app.post('/update-user', ensureAdmin, update_user_post.post);
 app.post('/admin-edit-incident', ensureAdmin, admin_edit_incident_post.post);
 app.post('/admin-add-warehouse', ensureAdmin, admin_add_warehouse_post.post);
