@@ -26,6 +26,7 @@ module.exports.get = function(req, res){
     function(callback) {
       UserModel.index(function(err, doc){
 	users = doc;
+	console.log(doc);
 	callback();
 
       });
