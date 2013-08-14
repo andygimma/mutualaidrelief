@@ -90,31 +90,43 @@
 						<div class="4u">
 
 							<!-- Sidebar -->
-								<section id="sidebar">
+									<section id="sidebar">
 									<section>
-									<header>
-										<h3>Inventory</h3>
-									</header>
-									<% if (typeof messages != 'undefined') { %>
-									<p class="messages"><%= messages %></p>
-									<% } %>
+										<header>
+											<h3>Inventory</h3>
+										</header>
 										<ul>
-										<li><a href="/warehouses">See Warehouses</a></li>
-										<li><a href="/add-inventory">Add Inventory</a></li>
-										<li><a href="/search-inventory">Search Inventory</a></li>
-										<li><a href="/list-inventory">See Current Inventory</a></li>
+										<li><a href="/add_inventory">Add Inventory</a></li>
+										<li><a href="/view_inventory">View Inventory</a></li>
 										</ul>
 										<hr>
+										<header>
+											<h3>Orders</h3>
+										</header>
+										<ul>
+										<li><a href="/add_order">Add Order</a></li>
+										<li><a href="/view_orders">View Orders</a></li>
+										</ul>
+										<hr>
+										
 										<header>
 											<h3>Deliveries</h3>
 										</header>
 										<ul>
-										<li><a href="/create-delivery-order">Create Delivery Order</a></li>
-										<li><a href="/add-orders-to-vehicle">Add Orders to a Vehicle</a></li>
-										<li><a href="/mark-delivery-complete">Mark Delivery as complete</a></li>
-										<li><a href="/cancel-delivery">Cancel Delivery</a></li>
-										<li><a href="/see-all-current-deliveries">See All Current Deliveries</a></li>
+										<li><a href="/add_delivery">Add Delivery</a></li>
+										<li><a href="/view_deliveries">View Deliveries</a></li>
 										</ul>
+										<hr>
+										<header>
+											<h3>Cases</h3>
+										</header>
+										<ul>
+										<li><a href="/add_case">Add Case</a></li>
+										<li><a href="/view_cases">View Cases</a></li>
+										</ul>
+										<hr>
+										
+
 									</section>
 								
 								</section>
